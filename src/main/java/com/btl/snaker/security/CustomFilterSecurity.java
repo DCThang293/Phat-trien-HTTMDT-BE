@@ -47,8 +47,11 @@ public class CustomFilterSecurity {
                         "/users/forgot/**",
                         "/api/signin",
                         "/api/signup",
+                        "/api/google",
+                        "/api/create-admin",
                         "/chatbot/message",
                         "/payment/**",
+                        "/return-request/user/**",
                         "/error"
                 ).permitAll()
                 .requestMatchers(

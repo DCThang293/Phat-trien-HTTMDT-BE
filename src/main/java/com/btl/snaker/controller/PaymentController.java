@@ -1,13 +1,12 @@
 package com.btl.snaker.controller;
 
 import com.btl.snaker.payload.ResponseData;
-import com.btl.snaker.service.VNPayService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @CrossOrigin("*")
@@ -15,44 +14,25 @@ import java.util.Map;
 @RequestMapping("/payment")
 public class PaymentController {
 
-    @Autowired
-    private VNPayService vnPayService;
-
-    // Frontend gọi API này để lấy URL thanh toán VNPay
-    @PostMapping("/vnpay/create")
-    public ResponseEntity<?> createPayment(
-            @RequestParam long amount,
-            @RequestParam String orderInfo,
-            HttpServletRequest request) {
+    // Lấy thông tin tài khoản ngân hàng để chuyển khoản
+    @GetMapping("/bank-info")
+    public ResponseEntity<?> getBankInfo(@RequestParam String orderId, @RequestParam long amount) {
         ResponseData responseData = new ResponseData();
         try {
-            String ipAddr = request.getRemoteAddr();
-            String paymentUrl = vnPayService.createPaymentUrl(amount, orderInfo, ipAddr);
+            Map<String, Object> bankInfo = new HashMap<>();
+            bankInfo.put("bankName", "Ngân hàng TMCP Quân đội (MB Bank)");
+            bankInfo.put("accountNumber", "1001234569666");
+            bankInfo.put("accountName", "DINH CONG THANG");
+            bankInfo.put("amount", amount);
+            bankInfo.put("content", "Thanh toan don hang " + orderId);
+            bankInfo.put("qrCode", "https://img.vietqr.io/image/MB-1001234569666-compact.png?amount=" + amount + "&addInfo=Thanh%20toan%20don%20hang%20" + orderId);
+            
             responseData.setSuccess(true);
-            responseData.setData(paymentUrl);
+            responseData.setData(bankInfo);
+            responseData.setDescription("Vui lòng chuyển khoản theo thông tin trên");
         } catch (Exception e) {
             responseData.setSuccess(false);
-            responseData.setDescription("Tạo URL thanh toán thất bại: " + e.getMessage());
-        }
-        return new ResponseEntity<>(responseData, HttpStatus.OK);
-    }
-
-    // VNPay redirect về URL này sau khi thanh toán
-    @GetMapping("/vnpay/return")
-    public ResponseEntity<?> paymentReturn(@RequestParam Map<String, String> params) {
-        ResponseData responseData = new ResponseData();
-        try {
-            boolean isValid = vnPayService.verifyPayment(params);
-            if (isValid && "00".equals(params.get("vnp_ResponseCode"))) {
-                responseData.setSuccess(true);
-                responseData.setDescription("Thanh toán thành công");
-            } else {
-                responseData.setSuccess(false);
-                responseData.setDescription("Thanh toán thất bại hoặc bị hủy");
-            }
-        } catch (Exception e) {
-            responseData.setSuccess(false);
-            responseData.setDescription("Lỗi xác thực: " + e.getMessage());
+            responseData.setDescription("Lỗi: " + e.getMessage());
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
     }
