@@ -7,9 +7,10 @@ spring:
     jpa:
         hibernate:
             ddl-auto: update
+        show-sql: true
     liquibase:
         change-log: classpath:db/changelog/db.changelog-master.xml
-        enabled: true
+        enabled: false
     mail:
         host: smtp.gmail.com
         port: 587
@@ -37,9 +38,3 @@ jwt:
 app:
     frontend:
         url: http://localhost:3000
-
-vnpay:
-  tmn-code: HMIDRN1N
-  hash-secret: DNSNQXHFZTKLTLMPANC5J9FAN6BDK71O
-  url: https://sandbox.vnpayment.vn/paymentv2/vpcpay.html
-  return-url: http://localhost:3000/payment/vnpay/return

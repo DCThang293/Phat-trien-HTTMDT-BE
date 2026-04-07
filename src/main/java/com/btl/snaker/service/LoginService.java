@@ -11,6 +11,7 @@ import com.btl.snaker.utils.JwtUtilHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,6 +54,7 @@ public class LoginService implements LoginServiceImp {
     }
 
     @Override
+    @Transactional
     public ResponseData signup(SignupRequest signupRequest) {
         ResponseData responseData = new ResponseData();
         if(isEmailExist(signupRequest.getEmail())) {
