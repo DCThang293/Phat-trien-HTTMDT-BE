@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="insert-brands-001" author="dev">
+        <insert tableName="brand">
+            <column name="id" valueNumeric="1" />
+            <column name="name" value="Nike" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="2" />
+            <column name="name" value="Adidas" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="3" />
+            <column name="name" value="Puma" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="4" />
+            <column name="name" value="Converse" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="5" />
+            <column name="name" value="Jordan" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="6" />
+            <column name="name" value="New Balance" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="7" />
+            <column name="name" value="Vans" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="8" />
+            <column name="name" value="Reebok" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="9" />
+            <column name="name" value="Asics" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="10" />
+            <column name="name" value="Fila" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="11" />
+            <column name="name" value="Under Armour" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="12" />
+            <column name="name" value="Skechers" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="13" />
+            <column name="name" value="Timberland" />
+        </insert>
+        <insert tableName="brand">
+            <column name="id" valueNumeric="14" />
+            <column name="name" value="Merrell" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-catagories-001" author="dev">
+        <insert tableName="category">
+            <column name="id" valueNumeric="1" />
+            <column name="cate_name" value="Giày thể thao" />
+        </insert>
+        <insert tableName="category">
+            <column name="id" valueNumeric="2" />
+            <column name="cate_name" value="Giày chạy bộ" />
+        </insert>
+        <insert tableName="category">
+            <column name="id" valueNumeric="3" />
+            <column name="cate_name" value="Giày thường ngày" />
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-products-001" author="dev">
+        <insert tableName="product">
+            <column name="id" valueNumeric="1" />
+            <column name="name" value="Nike Air Max"/>
+            <column name="price" valueNumeric="1800000"/>
+            <column name="description" value="Sneakers đỏ/trắng nổi bật của Nike"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="2" />
+            <column name="name" value="Adidas Ultraboost"/>
+            <column name="price" valueNumeric="2200000"/>
+            <column name="description" value="Giày chạy bộ trắng Adidas"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="2"/>
+            <column name="category_id" valueNumeric="2"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="3" />
+            <column name="name" value="Puma Suede Classic"/>
+            <column name="price" valueNumeric="3600000"/>
+            <column name="description" value="Sneaker cổ điển Puma"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="3"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="4" />
+            <column name="name" value="Converse Chuck Taylor"/>
+            <column name="price" valueNumeric="920000"/>
+            <column name="description" value="Sneaker vải cổ điển"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="4"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="5" />
+            <column name="name" value="Vans Old Skool"/>
+            <column name="price" valueNumeric="700000"/>
+            <column name="description" value="Giày skate đen trắng"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="7"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="6" />
+            <column name="name" value="Reebok Classic Leather"/>
+            <column name="price" valueNumeric="3200000"/>
+            <column name="description" value="Giày skate đen trắng"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="8"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="7" />
+            <column name="name" value="New Balance 574"/>
+            <column name="price" valueNumeric="2800000"/>
+            <column name="description" value="Sneaker retro New Balance"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="6"/>
+            <column name="category_id" valueNumeric="2"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="8" />
+            <column name="name" value="Asics Gel-Kayano"/>
+            <column name="price" valueNumeric="1700000"/>
+            <column name="description" value="Giày chạy bộ cao cấp"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="9"/>
+            <column name="category_id" valueNumeric="2"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="9" />
+            <column name="name" value="Fila Disruptor"/>
+            <column name="price" valueNumeric="800000"/>
+            <column name="description" value="Chunky sneaker đế dày"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="10"/>
+            <column name="category_id" valueNumeric="2"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="10" />
+            <column name="name" value="Under Armour Charged"/>
+            <column name="price" valueNumeric="2500000"/>
+            <column name="description" value="Giày chạy bộ thể thao"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="11"/>
+            <column name="category_id" valueNumeric="2"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="11" />
+            <column name="name" value="Jordan 1 Retro High"/>
+            <column name="price" valueNumeric="3200000"/>
+            <column name="description" value="High-top Jordan màu đỏ đen"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="5"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="12" />
+            <column name="name" value="Nike Blazer Mid"/>
+            <column name="price" valueNumeric="2200000"/>
+            <column name="description" value="Giày mid-top Nike cổ điển"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="13" />
+            <column name="name" value="Skechers D'Lites"/>
+            <column name="price" valueNumeric="2200000"/>
+            <column name="description" value="Giày chunky đế dày nhẹ"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="12"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="14" />
+            <column name="name" value="Timberland 6-Inch Boots"/>
+            <column name="price" valueNumeric="2200000"/>
+            <column name="description" value="Giày Boot da vàng cổ cao"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="13"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="15" />
+            <column name="name" value="Merrell Moab 2"/>
+            <column name="price" valueNumeric="4200000"/>
+            <column name="description" value="Giày leo núi dã ngoại"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="13"/>
+            <column name="category_id" valueNumeric="1"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="16" />
+            <column name="name" value="Nike Air Force 1"/>
+            <column name="price" valueNumeric="2200000"/>
+            <column name="description" value="AF1 trắng tinh iconic"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="1"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="17" />
+            <column name="name" value="Adidas NMD R1"/>
+            <column name="price" valueNumeric="1200000"/>
+            <column name="description" value="Sneaker boost hiện đại Adidas"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="2"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+        <insert tableName="product">
+            <column name="id" valueNumeric="18" />
+            <column name="name" value="Puma RS-X"/>
+            <column name="price" valueNumeric="900000"/>
+            <column name="description" value="Chunky retro runner Puma nhiều màu"/>
+            <column name="image" value="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"/>
+            <column name="brand_id" valueNumeric="3"/>
+            <column name="category_id" valueNumeric="3"/>
+            <column name="gender" value="Nam"/>
+            <column name="created_at" valueDate="2026-01-01"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
