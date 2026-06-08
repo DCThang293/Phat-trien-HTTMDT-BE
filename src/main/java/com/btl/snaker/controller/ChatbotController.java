@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @CrossOrigin("*")
@@ -49,15 +50,51 @@ public class ChatbotController {
             return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
         }
         try {
-            String botResponse = callGeminiWithFallback(message);
+            // Gọi Gemini lấy text
+            String botText = callGeminiWithFallback(message);
+
+            // Tìm sản phẩm liên quan để hiển thị ảnh
+            List<Map<String, Object>> suggestedProducts = findRelatedProducts(message, botText);
+
+            Map<String, Object> result = new java.util.HashMap<>();
+            result.put("text", botText);
+            result.put("products", suggestedProducts);
+
             responseData.setSuccess(true);
-            responseData.setData(botResponse);
+            responseData.setData(result);
         } catch (Exception e) {
             e.printStackTrace();
+            Map<String, Object> result = new java.util.HashMap<>();
+            result.put("text", "Xin lỗi, tôi đang gặp sự cố kỹ thuật. Vui lòng liên hệ hotline 0367468257.");
+            result.put("products", new java.util.ArrayList<>());
             responseData.setSuccess(true);
-            responseData.setData("Xin lỗi, tôi đang gặp sự cố kỹ thuật. Vui lòng liên hệ hotline 0367468257.");
+            responseData.setData(result);
         }
         return new ResponseEntity<>(responseData, HttpStatus.OK);
+    }
+
+    private List<Map<String, Object>> findRelatedProducts(String message, String botText) {
+        String combined = (message + " " + botText).toLowerCase();
+        List<Product> allProducts = productRepository.findAll();
+
+        return allProducts.stream()
+                .filter(p -> {
+                    String name = p.getName() == null ? "" : p.getName().toLowerCase();
+                    String brand = p.getBrand() != null ? p.getBrand().getName().toLowerCase() : "";
+                    return combined.contains(name) || combined.contains(brand) ||
+                           (p.getName() != null && combined.contains(p.getName().split(" ")[0].toLowerCase()));
+                })
+                .limit(4)
+                .map(p -> {
+                    Map<String, Object> m = new java.util.HashMap<>();
+                    m.put("id", p.getId());
+                    m.put("name", p.getName());
+                    m.put("image", p.getImage());
+                    m.put("price", p.getPrice());
+                    m.put("brand", p.getBrand() != null ? p.getBrand().getName() : "");
+                    return m;
+                })
+                .collect(Collectors.toList());
     }
 
     private String callGeminiWithFallback(String userMessage) throws Exception {
